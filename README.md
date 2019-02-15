@@ -1,4 +1,4 @@
-assignment-day-one
+Fibonacci & FizzBuzz
 ==================
 
 1. Accept the assignment to create a forked branch
