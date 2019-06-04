@@ -2,6 +2,8 @@ package com.cooksys.ftd.assignments.control;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.Arrays;
+
 /**
  * The Fibonacci sequence is simply and recursively defined: the first two elements are `1`, and
  * every other element is equal to the sum of its two preceding elements. For example:
@@ -24,7 +26,20 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (i < 0) {throw new IllegalArgumentException();}
+        int answer = 1;
+        int n1 = 1, n2 = 1, n3 = 2;
+        
+        if(i > 0) {
+        	for (int c = 1; c < i ; c++) {
+        		answer = n3;
+        		n1 = n2;
+        		n2 = n3;
+        		n3 = n1+n2;
+        	}
+        }
+        
+        return answer;
     }
 
     /**
@@ -38,7 +53,23 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if ((start < 0) || (end < 0) || (start > end)) {
+        	throw new IllegalArgumentException();
+        }
+        int [] fib = new int[end];
+
+        if(end > 0) {
+        	fib[0] = 1;
+        }
+        if(end > 1) {
+        	fib[1] = 1;
+        }
+
+        for(int i = 2; i < end; i++) {
+           fib[i] = fib[i-1] + fib[i-2];
+        }
+        int [] answer = Arrays.copyOfRange(fib, start, end);
+        return answer;
     }
 
     /**
@@ -49,6 +80,31 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (count < 0) {throw new IllegalArgumentException();}
+    	
+    	if((count == 0)) {
+    		int[] answer = new int[0];
+    		//answer[0] = 1;
+    		return answer;
+    	}else if ((count == 1)) {
+    		int[] answer = new int[1];
+    		answer[0] = 1;
+    		return answer;
+    	}else {
+    		int[] answer = new int[count];
+    		int n1 = 1, n2 = 1, n3 = 2;
+        
+            answer[0] = 1;
+            answer[1] = 1;
+            
+            for (int c = 2; c < count; c++) {
+                answer[c] = n3;
+                n1 = n2;
+                n2 = n3;
+                n3 = n1 + n2;
+            }
+            return answer;
+    	}
+        
     }
 }
